@@ -12,24 +12,7 @@
     $row=mysqli_fetch_array($qry);
 ?>
 
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="assets/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <!-- Font Awesome icons  -->
-
-        <!-- Font Awesome -->
-      <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-           <!-- digital fonts -->
-      <link href="http://fonts.cdnfonts.com/css/alarm-clock" rel="stylesheet">
-                
-      <title>www.krismo.com</title>
-    </head>
+<?php include 'include/header.php'; ?>
     <style>
       @import url('http://fonts.cdnfonts.com/css/alarm-clock');
       </style>
@@ -61,7 +44,7 @@
                 <div class="col-md-12 mx-auto">
                   <div class="card bg-dark p-2" style=" color: rgb(2, 96, 112);border:1px solid red;" >
                     <div class="card-header" style="background-color: rgb(2, 96, 112);"></div>
-                    <div class="card-body bg-light">
+                    <div class="card-body bg-light"  style="color: rgb(2, 96, 112);">
                       <form action="config/addaccount.php" method="post">
                         <div class="">
                           <label for="" class="float-left">Account Number</label>
@@ -94,9 +77,9 @@
             <div class="col-lg-12 mx-auto p-4 ">
           
                 <div class="col-md-12 mx-auto">
-                  <div class="card bg-dark p-2" style=" color: rgb(2, 96, 112);border:1px solid red;" >
+                  <div class="card bg-dark p-2" style="color: rgb(2, 96, 112);border:1px solid red;" >
                     <div class="card-header" style="background-color: rgb(2, 96, 112);"></div>
-                    <div class="card-body bg-light">
+                    <div class="card-body bg-light" style="color: rgb(2, 96, 112);">
                     <p class="text-left " style="font-weight: bold;"><i class="fas fa-user-tie  text-danger "></i> Owner : <?php echo $row['fname'].' '.$row['mname'].' '.$row['lname'] ?><hr></p>
                     <p class="text-left " style="font-weight: bold;"><i class="fas fa-credit-card text-danger "></i> Account No: <?php echo $row['ac_number'];?> <hr></p>
                     
