@@ -7,34 +7,15 @@
   }
   else{
     $id=$_SESSION['id'];
-    $sql="SELECT * FROM user WHERE id='$id'";
+    $sql="SELECT * FROM user,account WHERE user.id='$id' AND account.owner='$id'";
     $qry=mysqli_query($conn,$sql);
     $row=mysqli_fetch_array($qry);
-?>
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="assets/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <!-- Font Awesome icons  -->
 
-        <!-- Font Awesome -->
-      <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-           <!-- digital fonts -->
-      <link href="http://fonts.cdnfonts.com/css/alarm-clock" rel="stylesheet">
-                
-      <title>www.krismo.com</title>
-    </head>
-    <style>
-      @import url('http://fonts.cdnfonts.com/css/alarm-clock');
-      </style>
-
-          <!-- start of navbar-->
-       <?php include 'include/navbar.php'; ?>
+    include 'include/header.php'; 
+    
+    include 'include/navbar.php'; 
+    ?>
           <!-- End of navbar -->
     <body class="bg-light p-0" >
   
@@ -46,62 +27,48 @@
         <div class="row mx-auto">
         <div  class="col-md-8 mx-auto text-center" id="home">
             <div class="p-2">
-              <h4 class="text-bold" style=" color: rgb(2, 96, 112);font-weight:bold;">Welcome Back <?php echo $row['fname']; ?> To Krismo Microfinance</h4>
+              <h4 class="text-bold" style=" color: rgb(2, 96, 112);font-weight:bold;"><i class="fa fa-user"></i> Welcome Back <?php echo $row['fname']; ?> To Krismo Microfinance</h4>
               <hr>
               <div class="row">
        
     
-      
+        
+
+              <div class="col-md-12 mt-1 text-center ">
+             <!-- small box -->
+             <div class="card bg-dark p-2" style=" color: rgb(2, 96, 112);border:1px solid red;" >
+               <div class="card-header " style="background:rgb(2, 96, 112);"></div>
+               <div class="card-body bg-success" style="opacity:80%;">
+                <marquee behavior="" direction="right"><h2>TSH <?php echo $row['capacity']; ?></h2></marquee>
+               
+                 <h4>Loan Capacity</h4>
+               </div>
+             <div class="">
+             <a href="loan_request.php" class="small-box-footer text-light">Request Loan <i class="fas fa-arrow-circle-right text-danger"></i></a>
+             </div>
+               
+             </div>
+           </div>
+           <!-- ./col -->
+     
+      <br>
        <!-- Small boxes (Stat box) -->
-     <!-- Earnings  -->
+     <!-- money box  -->
          <div class="col-md-12 text-center ">
            <!-- small box -->
-           <div class="card bg-success">
-             <div class="inner">
-                 <br>
-               <h3>TSH</h3>
-
-               <p>Total Earnings</p>
-             </div>
-          
+           <div class="card bg-light">
              
-             <a href="earnings.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <img src="mone.jpg" style="width:100%;height: 180px;">
+             
+        
+             
+            
            </div>
          </div>
          <!-- ./col -->
    <br>
        
-         <div class="col-md-12 text-center mt-2">
-             <!-- small box -->
-             <div class="card bg-warning">
-               <div class="inner">
-                 <br>
-               <h3>TSH</h3>
- 
-                 <p>Total Savings</p>
-               </div>
-            
-               <a href="savings.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-             </div>
-           </div>
-           <!-- ./col -->
-     
-        
 
-           <div class="col-md-12 mt-1 text-center ">
-             <!-- small box -->
-             <div class="card bg-danger">
-               <div class="inner">
-               <br>
-               <h3>TSH</h3>
-                 <p>Total Debts</p>
-               </div>
-             
-               <a href="debts.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-             </div>
-           </div>
-           <!-- ./col -->
-     
 
      
 
