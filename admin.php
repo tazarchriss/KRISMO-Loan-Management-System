@@ -10,28 +10,7 @@
     $sql="SELECT * FROM user WHERE id='$id'";
     $qry=mysqli_query($conn,$sql);
     $row=mysqli_fetch_array($qry);
-?>
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="assets/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <!-- Font Awesome icons  -->
-
-        <!-- Font Awesome -->
-      <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-           <!-- digital fonts -->
-      <link href="http://fonts.cdnfonts.com/css/alarm-clock" rel="stylesheet">
-                
-      <title>www.krismo.com</title>
-    </head>
-    <style>
-      @import url('http://fonts.cdnfonts.com/css/alarm-clock');
-      </style>
+    include 'include/header.php'; ?>
 
           <!-- start of navbar-->
           <nav class="navbar navbar-expand-lg navbar-dark m-0 " style="background-color: rgb(2, 96, 112);">
@@ -76,16 +55,18 @@
          <div class="col-md-12 text-center ">
            <!-- small box -->
            <div class="card bg-success">
-             <div class="inner">
+             <div class="card-body">
                  <br>
-               <h3>TSH</h3>
+               <h3>***********</h3>
 
-               <p>Total Earnings</p>
+               <p>Remaining Float</p>
              </div>
           
              
-             <a href="earnings.php" class="small-box-footer text-light">More info <i class="fas fa-arrow-circle-right"></i></a>
-           </div>
+             <div class="card-footer">
+               <a href="savings.php" class="small-box-footer text-dark">View <i class="fas fa-arrow-circle-right"></i></a>
+               </div>
+  </div>
          </div>
          <!-- ./col -->
    <br>
@@ -93,14 +74,17 @@
          <div class="col-md-12 text-center mt-2">
              <!-- small box -->
              <div class="card bg-warning">
-               <div class="inner">
+               <div class="card-body">
                  <br>
-               <h3>TSH</h3>
+               <h3>*************</h3>
  
-                 <p>Total Savings</p>
+                 <p>Offered Loans</p>
                </div>
             
-               <a href="savings.php" class="small-box-footer text-dark">More info <i class="fas fa-arrow-circle-right"></i></a>
+               <div class="card-footer">
+               <a href="savings.php" class="small-box-footer text-dark">View <i class="fas fa-arrow-circle-right"></i></a>
+               </div>
+               
              </div>
            </div>
            <!-- ./col -->
@@ -110,15 +94,17 @@
            <div class="col-md-12 mt-1 text-center ">
              <!-- small box -->
              <div class="card bg-danger">
-               <div class="inner">
+               <div class="card-body">
                <br>
-               <h3>TSH</h3>
-                 <p>Total Debts</p>
+               <h3>************</h3>
+                 <p>Total Profit</p>
                </div>
              
-               <a href="debts.php" class="small-box-footer text-light">More info <i class="fas fa-arrow-circle-right"></i></a>
-             </div>
+               <div class="card-footer">
+               <a href="savings.php" class="small-box-footer text-dark">View <i class="fas fa-arrow-circle-right"></i></a>
+               </div>
            </div>
+  </div>
            <!-- ./col -->
      
 
@@ -172,7 +158,7 @@
           </div>
         </section>
     
-        <footer class="fixed-bottom bg-dark  text-light text-center mt-2 mb-0" style="height:100px;">
+        <footer class=" bg-dark  text-light text-center mt-2 mb-0" style="height:100px;">
           <br>
             <strong class="text-light">Copyright &copy; 2022 <a class="text-danger">TazarChriss</a>.</strong>
             All rights reserved.
