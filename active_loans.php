@@ -1,5 +1,5 @@
-<!-- This is the admin home dashboard -->
-<?php
+  <!-- This is the page for active loans -->
+  <?php
   session_start();
   include 'config/database.php';
   if ($_SESSION['id']=='') {
@@ -10,29 +10,21 @@
     $sql="SELECT * FROM user WHERE id='$id'";
     $qry=mysqli_query($conn,$sql);
     $row=mysqli_fetch_array($qry);
-    include 'include/header.php'; ?>
+    $sql1="SELECT * FROM loan WHERE customer='$id' AND status='active'";
+    $qry1=mysqli_query($conn,$sql1);
+?>
+
+
+  <!doctype html>
+  <html lang="en">
+    <head>
+    <?php include 'include/header.php'; ?>
+    <style>
+      @import url('http://fonts.cdnfonts.com/css/alarm-clock');
+      </style>
 
           <!-- start of navbar-->
-          <nav class="navbar navbar-expand-lg navbar-dark m-0 " style="background-color: rgb(2, 96, 112);">
-              <a class="navbar-brand" href="#"><b><i>Krismo</i><i class="text-danger">.com</i></b></a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" >
-
-
-                <!-- right navigation -->
-                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                    <li class="nav-item">
-                        <a href="profile.html" class="nav-link text-danger " style="font-weight:bolder;"><i class="fa fa-circle text-success"></i> <?php echo $row['fname'].' '.$row['lname']; ?></a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="config/logout.php" class="nav-link text-light" style="font-weight: bolder;"><i class="fas fa-sign-out-alt "></i> Log Out</a>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-            
+          <?php include 'include/navbar.php'; ?>
           <!-- End of navbar -->
     <body class="bg-light p-0" >
   
@@ -44,74 +36,74 @@
         <div class="row mx-auto">
         <div  class="col-md-8 mx-auto text-center" id="home">
             <div class="p-2">
-            <h4 class="text-bold" style=" color: rgb(2, 96, 112);font-weight:bold;"><i class="fa fa-user-tie"></i> Welcome Back <?php echo $row['fname']; ?> To Krismo Microfinance</h4>
-              <hr>
-              <div class="row">
-       
-    
-      
-       <!-- Small boxes (Stat box) -->
-     <!-- Earnings  -->
-         <div class="col-md-12 text-center ">
-           <!-- small box -->
-           <div class="card bg-success">
-             <div class="card-body">
-                 <br>
-               <h3>***********</h3>
+                <div class="card bg-dark p-2" style=" color: rgb(2, 96, 112);border:1px solid red;" >
+                    <div class="card-header" style="background-color: rgb(2, 96, 112);">
+                    
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body bg-light">
+                        <?php
 
-               <p>Remaining Float</p>
-             </div>
-          
-             
-             <div class="card-footer">
-               <a href="savings.php" class="small-box-footer text-dark">View <i class="fas fa-arrow-circle-right"></i></a>
-               </div>
-  </div>
-         </div>
-         <!-- ./col -->
-   <br>
-       
-         <div class="col-md-12 text-center mt-2">
-             <!-- small box -->
-             <div class="card bg-warning">
-               <div class="card-body">
-                 <br>
-               <h3>*************</h3>
- 
-                 <p>Offered Loans</p>
-               </div>
-            
-               <div class="card-footer">
-               <a href="savings.php" class="small-box-footer text-dark">View <i class="fas fa-arrow-circle-right"></i></a>
-               </div>
-               
-             </div>
-           </div>
-           <!-- ./col -->
-     
-        
+                        if (mysqli_num_rows($qry1) == 0){
 
-           <div class="col-md-12 mt-1 text-center ">
-             <!-- small box -->
-             <div class="card bg-danger">
-               <div class="card-body">
-               <br>
-               <h3>************</h3>
-                 <p>Total Profit</p>
-               </div>
-             
-               <div class="card-footer">
-               <a href="savings.php" class="small-box-footer text-dark">View <i class="fas fa-arrow-circle-right"></i></a>
-               </div>
-           </div>
-  </div>
-           <!-- ./col -->
-     
 
-     
+                        ?>
+                        <h4 class="text-center text-danger"> No Customers are Available ! </h4>
 
-</div>
+                        <?php
 
+                        }
+
+                        else{
+                          ?>
+                      <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                          <th>SN</th>
+                          <th>Amount</th>
+                          <th>Paid</th>
+                          <th>Deadline</th>
+                          <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                    for ($i=1; $i<=mysqli_num_rows($qry1); $i++){
+                      $row = mysqli_fetch_array($qry1);
+                    
+              
+
+                  
+                  ?>
+                        <tr>
+                          <td>
+                            <?php echo $i; ?></td>
+                          <td>
+                            <?php echo $row['issued_amount']; ?>
+                          </td>
+                          <td>
+                          <?php echo $row['payment']; ?>
+                          </td>
+                          <td>
+                          <?php echo $row['pay_day']; ?> 
+                        </td>
+                          
+                          <td>
+                              <div class="text-center">
+                              <a href="single_loan.php?id=<?php echo $row['id'];?>" class="text-light badge badge-success">view</a>
+                                 
+                              </div>
+                          </td>
+                        </tr>
+                        <?php 
+                          }
+                        }
+                          ?>
+                        </tbody>
+                        </table>
+                        </div>
+                    </div>
+                
 
             </div>
 
@@ -143,9 +135,9 @@
          
           
         </div> 
-  <!-- start of admin side nav -->
+              <!-- start of admin side nav -->
 
-    <?php include 'include/adminnav.php'; ?>
+    <?php include 'include/customernav.php'; ?>
   <!-- end of admin side nav -->
       </div>
     </div>
@@ -158,7 +150,7 @@
           </div>
         </section>
     
-        <footer class=" bg-dark  text-light text-center mt-2 mb-0" style="height:100px;">
+        <footer class="fixed-bottom bg-dark  text-light text-center mt-2 mb-0" style="height:100px;">
           <br>
             <strong class="text-light">Copyright &copy; 2022 <a class="text-danger">TazarChriss</a>.</strong>
             All rights reserved.
@@ -173,8 +165,40 @@
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- Page specific script -->
+<script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+     
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
     </body>
   </html>
 
   <?php
-  }?>
+  }
+  ?>
